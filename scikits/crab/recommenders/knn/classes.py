@@ -218,6 +218,11 @@ class ItemBasedRecommender(ItemRecommender):
         return self.items_selection_strategy.candidate_items(user_id, \
                             self.model)
 
+
+    def _set_params(self, **params):
+        pass
+
+
     def _top_matches(self, source_id, target_ids, how_many=None, **params):
         '''
         Parameters
@@ -484,6 +489,8 @@ class UserBasedRecommender(UserRecommender):
         distance = params.pop('distance', self.similarity.distance)
         nhood_size = params.pop('nhood_size', None)
 
+        # TODO.
+        # this could be cached and used in subsequent user's similarity computation!
         nearest_neighbors = self.neighborhood_strategy.user_neighborhood(user_id,
                 self.model, n_similarity, distance, nhood_size, **params)
 
@@ -605,6 +612,11 @@ class UserBasedRecommender(UserRecommender):
                  candidate_items, how_many)
 
         return recommendable_items
+
+
+    def _set_params(self, **params):
+        pass
+
 
     def _top_matches(self, source_id, target_ids, how_many=None, **params):
         '''

@@ -122,6 +122,7 @@ class MatrixPreferenceDataModel(BaseDataModel):
         logger.info("creating matrix for %d users and %d items" % \
                     (self._user_ids.size, self._item_ids.size))
 
+        # TODO, sparse matrix could be used!
         self.index = np.empty(shape=(self._user_ids.size, self._item_ids.size))
         for userno, user_id in enumerate(self._user_ids):
             if userno % 2 == 0:
